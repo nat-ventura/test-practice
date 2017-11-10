@@ -26,3 +26,4 @@ Let's say you make an API call to a server that gets a user's email address. You
 
 - Spies: Allow us to check that functions are called.
 - Stubs: Like spies, but can be forced to behave in a particular ways.
+- Mocks: Fake methods like spies, with pre-programmed behavior like stubs. The advantage is pre-programmed expectations as well. Will fail your tests if not used as expected. Useful for mocking out particular function within an object.

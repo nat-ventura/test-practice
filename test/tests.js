@@ -6,6 +6,30 @@ const Add = require('../math');
 const IsAlive = require('../functions');
 const sinon = require('sinon');
 
+const API = {
+  IsAlive: function(address) {
+    try {
+      let pingOneSuccess = this.Ping(address);
+      // let pingTwoSuccess = this.Ping(address);
+      // let pingThreeSuccess = this.Ping(address);
+
+      if (pingOneSuccess && pingTwoSuccess && pingThreeSuccess)
+        return true;
+      return false;
+
+    } catch (e) {
+      return new Error('ping threw exception');
+    }
+  },
+
+  Ping: function(address) {
+    return true;
+  },
+
+  KillServer: function() {
+  }
+}
+
 describe('Spy Tests', function() {
   it('should log result of add', function() {
     let num1 = 1;
@@ -67,44 +91,44 @@ describe('IsAlive Tests', function() {
 
     error.message.should.equal('ping threw exception');
   });
+
+  // it('should call ping 3 times', function() {
+  //   let mockApi = sinon.mock(API);
+  //   mockApi.expects('Ping').exactly(3);
+
+  //   API.IsAlive();
+
+  //   mockApi.verify();
+  //   mockApi.restore();
+  // });
+
+  it('should call ping at least one time', function() {
+    let mockApi = sinon.mock(API);
+    mockApi.expects('Ping').atLeast(1);
+
+    API.IsAlive();
+
+    mockApi.verify();
+    mockApi.restore();
+  });
+
+  it('should not call KillServer', function() {
+    let mockApi = sinon.mock(API);
+    mockApi.expects('KillServer').never();
+
+    API.IsAlive();
+
+    mockApi.verify;
+    mockApi.restore();
+  });
+
+  it('should ping the server address that it is passed', function () {
+    let address = '1.1.1.1';
+    let mockApi = sinon.mock(API);
+    mockApi.expects('Ping').withExactArgs(address);
+    API.IsAlive(address);
+
+    mockApi.verify();
+    mockApi.restore();
+  });
 });
-
-// using 'should' format
-// describe('Addition Test', function() {
-
-  // it('should return 3 when passed 1 and 2', function() {
-  //   let num1 = 1;
-  //   let num2 = 2;
-
-  //   let expectedResult = 3;
-  //   let actualResult = Add(num1, num2);
-
-  //   actualResult.should.equal(expectResult);
-
-  // });
-
-  // // using 'expect' format
-  // it('should return 3 when passed 1 and 2', function() {
-  //   let num1 = 1;
-  //   let num2 = 2;
-
-  //   let expectedResult = 3;
-  //   let actualResult = Add(num1, num2);
-
-  //   actualResult.should.equal(expectedResult);
-  //   expect(actualResult).to.equal(expectedResult);
-  // });
-
-  // using 'assert' format
-  // it('should return not 3 when passed 1 and 4', function() {
-  //   let num1 = 1;
-  //   let num2 = 4;
-
-  //   let unexpectedResult = 3;
-  //   let actualResult = Add(num1, num2);
-
-  //   actualResult.should.not.equal(unexpectedResult);
-  //   expect(actualResult).to.not.equal(unexpectedResult);
-  //   assert.notEqual(actualResult, expected, "[message]");
-  // });
-// });
