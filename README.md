@@ -25,3 +25,4 @@ Sinon helps you get around this by "mocking out" the server. You replace the cal
 Let's say you make an API call to a server that gets a user's email address. You can set up a fake server so that when it's given a particular name, it returns a predefined email address.
 
 - Spies: Allow us to check that functions are called.
+- Stubs: Like spies, but can be forced to behave in a particular ways.
