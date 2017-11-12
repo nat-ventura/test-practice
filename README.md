@@ -1,12 +1,12 @@
 # Unit Testing with Mocha, Chai, and Sinon
 
-#### What is Unit Testing?
+### What is Unit Testing?
 
 The "unit" in "unit testing" just means that you are testing one unit within your application.
 - Specifies the behavior of your software-- makes sure it's working the way you expect/intend.
 - "Unit" refers to individual parts-- modules that work independently of each other.
 
-#### TDD Workflow
+### TDD Workflow
 
 Always write a failing test first and then make it pass before refactoring.
 
@@ -25,11 +25,11 @@ describe('<method> Test', function() {
 });
 ```
 
-#### Chai Note
+### Chai Note
 
 Chai is an assertion library used to check the state of our code during a test to ensure that the code behaved as expected. During testing, we use chai to check our values against expected preset values.
 
-#### Sinon Notes
+### Sinon Notes
 
 Sinon helps keep tests simple by mocking out sub systems and allows us to see how objects/functions have been used.
 
@@ -44,5 +44,5 @@ Let's say you make an API call to a server that gets a user's email address. You
 - Stubs: Like spies, but can be forced to behave in a particular ways.
 - Mocks: Fake methods like spies, with pre-programmed behavior like stubs. The advantage is pre-programmed expectations as well. Will fail your tests if not used as expected. Useful for mocking out particular function within an object.
 
-#### Example for When to Use Sinon Mock or Stub
+### Example for When to Use Sinon Mock or Stub
 If you wanted a particular function to return a specific value in your test (i.e. your `verifyPassword` method to `return true` so that you can check you are logged in when `verifyPassword` returns true.
